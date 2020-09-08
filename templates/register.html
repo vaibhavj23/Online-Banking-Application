@@ -1,0 +1,84 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+
+<head>
+</head>
+
+<body class="news">
+    <header>
+        <div class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="login">Login</a></li>
+                <li><a class="active" href="#">Register</a></li>
+                <li><a href="admin">Admin</a></li>
+                <li><a href="branches">Branches</a></li>
+                <li><a href="about">About</a></li>
+                
+            </ul>
+        </div>
+    </header>
+    <center>
+        <div>
+            <!--{% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}-->
+            <h2 style="color: rgb(31, 192, 31);">{{message}}</h2>
+            <h2 style="color: red;">{{message1}}</h2>
+            <h3 style="color: red;">{{message2}}&nbsp &nbsp{{message3}}</h3>
+        </div>
+        
+    <div class="formdiv">
+        <form action="register" method="POST">
+
+            {% csrf_token%}
+
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+
+            <!--<label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+            </select>-->
+            <label for="fname">Gender</label>&nbsp&nbsp
+            Male <input type="radio" id="gender" name="gender" value="M" required>
+            Female <input type="radio" id="gender" name="gender" value="F" required><br><br>
+
+            <label for="lname">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age.." required><br>
+
+            <label for="country">Address</label>
+            <select id="address" name="address">
+                <option value="chembur">Chembur</option>
+                <option value="vashi">Vashi</option>
+                <option value="dadar">Dadar</option>
+                <option value="panvel">Panvel</option>
+                <option value="bandra">Bandra</option>
+                <option value="cst">CST</option>
+            </select><br>
+
+            <label for="lname">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your your email.." required><br>
+
+            <label for="lname">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password.." required><br>
+
+            <center><input type="submit" value="Submit"></center>
+        </form>
+        
+    </div>
+    </center>
+
+</body>
+
+</html>
+
+{% endblock %}

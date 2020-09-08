@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<html>
+
+<head>
+    <style>
+        body { 
+            width:100%;  
+            margin:auto; 
+        } 
+
+        .text{
+            color: brown;
+            text-align: left;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+        }
+        .box { 
+            width:80%;  
+            padding:10px; 
+            margin:8px; 
+            box-shadow: 1px 1px 1px 1px green;  
+        } 
+    
+    </style>
+</head>
+
+<body class="news">
+    <header>
+        <div class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% if 'present' in session_info %}
+                <li><a href="login">{{customer.fname}}</a></li>
+                <li><a href="logout">Logout</a></li>
+                {% elif 'no' in session_info %}
+                {% if 'no' in admin_session_info %}
+                <li><a href="login">Login</a></li>
+                <li><a href="register">Register</a></li>
+                {% endif %}
+                <li><a href="admin">Admin</a></li>
+                {% if 'present' in admin_session_info %}
+                <li><a href="admin_logout">Logout</a></li>
+                {% endif %}
+                
+                {% endif%}
+                
+                <li><a href="branches">Branches</a></li>
+                <li><a class="active" href="#">About</a></li>
+                
+            </ul>
+        </div>
+    </header>
+    <br><br><br>
+    <center>
+    <div class="box">
+        <ul class="text">
+        <li>This is an simple basic Banking Application developed using Django frame
+            work with HTML used for frontend ,Python for backend and PostgreSql is used as Database.</li>
+        <li>This Application has following functionalities: </li>
+        <li>Registration of Users.</li>
+        <li>Proper Login and Logout mechanism for both users and admin.</li>
+        <li>An registered uer can do the following:
+        <ul>
+            <li>View Account details eg. balance , Account Id.</li>
+            <li>Create Account eg.Saving or Fixed.</li>
+            <li>Make Transactions eg. Credit or Debit.</li>
+            <li>Can contact bank admin for any related queries.</li>
+        </ul>
+        <li>For Admin, admin credentials are needed to be directly added in admin table in database.</li>
+        <li>Admin can view all customers of the bank , with an added option to view customers based on branch.</li>
+        <li>Admin can view the queries submitted by customer and then delete the queries when solved.</li>    
+    </ul>
+    </div>
+    </center>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+
+</html>
+{% endblock %}

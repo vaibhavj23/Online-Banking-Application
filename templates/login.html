@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+
+<head>
+</head>
+
+<body class="news">
+    <header>
+        <div class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a class="active" href="#">Login</a></li>
+                <li><a href="register">Register</a></li>
+                <li><a href="admin">Admin</a></li>
+                <li><a href="branches">Branches</a></li>
+                <li><a href="about">About</a></li>
+            </ul>
+        </div>
+    </header><br><br>
+
+
+
+    <center>
+    <div class="formdiv">
+        <form action="login" method="POST">
+
+            {% csrf_token%}
+
+            <label for="fname">Email Id</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email id.." required>
+
+            <label for="lname">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password.." required>
+
+            <center><input type="submit" value="Login"></center>
+        </form>
+    </center>
+    {% for message in messages %}
+        <center><h3 style="color: red;">{{message}}</h3></center>
+    {% endfor %}
+    <br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>
+
+{% endblock %}

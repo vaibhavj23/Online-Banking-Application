@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+
+<head>
+    <style>
+        fieldset {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 40%;
+            text-align: left;
+
+        }
+
+          
+          legend {
+            background-color: rgb(128, 124, 124);
+            text-align: center;
+            color: white;
+            padding: 5px 10px;
+          }
+          
+    </style>
+    <script>
+        function check_view_type(view_type)
+        {
+            if(view_type=="all_customers")
+            {
+                document.getElementById("branch").disabled=true;
+            }
+            else if(view_type=="branch_wise")
+            {
+                document.getElementById("branch").disabled=false;
+            }
+        }
+    </script>
+</head>
+
+<body class="news">
+    <header>
+        <div class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a class="active" href="#">Admin</a></li>
+                <li><a href="admin_logout">Logout</a></li>
+                <li><a href="branches">Branches</a></li>
+                <li><a href="about">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+<center>
+<div>
+    <center><h2 style="color:brown;">Welcome Admin&nbsp;{{admin.name}}</h2></center>
+</div>
+</center>
+
+<hr>
+<br>
+<center>
+<fieldset>
+    <legend>View Customers</legend>
+<div >
+    <form action="view_customers" method="POST">
+
+        {% csrf_token%}
+        <label for="fname">Select View Type</label>&nbsp&nbsp
+        <input type="radio" id="view_type" name="view_type" value="all_customers" onclick="check_view_type(this.value)" required>All Customers
+        <input type="radio" id="view_type" name="view_type" value="branch_wise" onclick="check_view_type(this.value)">Branch Wise<br><br>
+        <label for="fname">Select Branch </label>
+        <select id="branch" name="branch" required>
+            <option value="chembur">Chembur</option>
+            <option value="vashi">Vashi</option>
+            <option value="dadar">Dadar</option>
+            <option value="panvel">Panvel</option>
+            <option value="bandra">Bandra</option>
+            <option value="cst">CST</option>
+        </select>
+        <center><input type="submit" value="View"></center>
+    </form>
+    </div>
+</fieldset>
+</center>
+<br>
+<center>
+    <div>
+        <fieldset>
+            <legend>View/Delete Queries</legend>
+            <form action="view_queries" method="POST">
+                {% csrf_token%}
+                Select Operation &nbsp;
+                <input type="radio" name="operation" value="view_queries" required>View Queries
+                <input type="radio" name="operation" value="delete_queries" required>Remove Queries
+                <center><input type="submit" value="Submit"></center>
+            </form>
+        </fieldset>
+    </div>
+</center>
+</body>
+</html>
+
+{% endblock %}

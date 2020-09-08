@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+
+<head>
+    <script>
+        function checkAccount(account_type){
+            if(account_type=="fixed")
+            {
+                var x=document.getElementById("transaction_type");
+                x.remove(0);
+            }
+        }
+        function changeminmax(){
+            var x=document.getElementById("transaction_type").value;
+            if(x=="credit")
+            {
+                document.getElementById("t_amount").max="";
+            }
+        }
+    </script>
+</head>
+
+<body class="news">
+<hr>
+
+<center>
+
+    <div class="formdiv">
+        <form action="transaction" method="POST">
+
+            {% csrf_token%}
+            <label for="fname">Select Account</label>&nbsp&nbsp
+            <input type="radio" id="account" name="account" value="saving" onclick="checkAccount(this.value)" required>Saving
+            <input type="radio" id="account" name="account" value="fixed" onclick="checkAccount(this.value)">Fixed<br><br>
+            <label for="fname">Select Transaction Type</label>
+            <select id="transaction_type" name="transaction_type" required>
+                <option value="debit">Debit</option>
+                <option value="credit">Credit</option>
+            </select>
+            <label for="fname">Enter Amount</label>
+            <input type="number" name="t_amount" id="t_amount" min="1" max="{{account.s_balance}}" onclick="changeminmax()" required>
+            <center><input type="submit" value="Submit"></center>
+        </form>
+        
+    </div>
+
+    <br>
+        <h3 style="color: red;">{{msg1}}</h3>
+        <h3 style="color: rgb(31, 192, 31);">{{msg}}</h3>
+    <br>
+    <div style="width: 30%;">
+        <input type=submit value="Back" onClick="javascript:history.go(-1);">
+    </div>
+</center>
+</body>
+</html>
+{% endblock %}

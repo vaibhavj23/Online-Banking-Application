@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static%}
+<html>
+
+<head>
+    <style>
+       /* style to set body of page */ 
+       body { 
+        width:100%;  
+        margin:auto; 
+    } 
+    .gallery { 
+        width:100%; 
+        display:flex; 
+        flex-flow: row wrap; 
+    } 
+    .box { 
+        flex-basis:20%; 
+        width:100%; 
+        padding:10px; 
+        margin:8px; 
+        box-shadow: 1px 1px 1px 1px green; 
+    } 
+    .text { 
+        text-align:center; 
+        margin-top:5px; 
+    } 
+    .image:hover { 
+        border: 3px solid green; 
+    } 
+      
+    /* media query used here */ 
+    @media only screen and (max-width: 300px) {  
+        .box { 
+            flex-basis: 100%; 
+        } 
+    } 
+      
+    @media only screen and (max-width:500px) { 
+        .box { 
+            flex-basis: 40%; 
+        } 
+    } 
+    </style>
+</head>
+
+<body class="news">
+    <header>
+        <div class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% if 'present' in session_info %}
+                <li><a href="login">{{customer.fname}}</a></li>
+                <li><a href="logout">Logout</a></li>
+                {% elif 'no' in session_info %}
+                {% if 'no' in admin_session_info %}
+                <li><a href="login">Login</a></li>
+                <li><a href="register">Register</a></li>
+                {% endif%}
+                <li><a href="admin">Admin</a></li>
+                {% if 'present' in admin_session_info %}
+                <li><a href="admin_logout">Logout</a></li>
+                {% endif %}
+                
+                {% endif %}
+                <li><a class="active" href="#">Branches</a></li>
+                <li><a href="about">About</a></li>
+            </ul>
+        </div>
+    </header><br><br><br><br>
+
+    <div class = "gallery"> 
+      <div class = "box"> 
+        <div class = "image"> 
+                <img src="{% static 'BankApp/images/bank_1.jpg' %}" width = "300" height = "300"> 
+        </div> 
+          
+        <div class = "text"> 
+            CHEMBUR
+        </div> 
+    </div> 
+  
+      <div class = "box"> 
+          <div class = "image"> 
+                  <img src="{% static 'BankApp/images/bank_2.jpg' %}" width = "300" height = "300"> 
+          </div> 
+            
+          <div class = "text"> 
+              DADAR
+          </div> 
+      </div> 
+    
+      <div class = "box"> 
+          <div class = "image"> 
+            <img src="{% static 'BankApp/images/bank_3.jpg' %}" width = "300" height = "300"> 
+          </div> 
+            
+          <div class = "text"> 
+              CST 
+          </div> 
+      </div> 
+        
+      <div class = "box"> 
+          <div class = "image"> 
+            <img src="{% static 'BankApp/images/bank_4.jpg' %}" width = "300" height = "300">
+          </div> 
+            
+          <div class = "text"> 
+              PANVEL
+          </div> 
+      </div> 
+    </div>
+    </body>
+
+    </html>
+    
+    {% endblock %}

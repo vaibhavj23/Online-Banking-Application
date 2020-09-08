@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+
+<body>
+    <hr>
+    <center>
+        <h2 style="color:brown;">Contact Form</h2>
+        
+        <center>
+            <div>
+                <h2 style="color: rgb(31, 192, 31);">{{message}}</h2>
+            </div>
+        </center>
+            
+        <div class="formdiv">
+            <form action="contact_admin" method="POST">
+                Customer Name
+                <input type="text"  name="customer_name" value="{{customer.fname}} {{customer.lname}}" disabled>
+                Customer ID
+                <input type="text"  name="customer_id" value="{{customer.customer}}" disabled>
+                Query<br><br>
+                <textarea name="query" placeholder="Write query here" rows="8" cols="60" required></textarea>
+                <center><input type="submit" value="Submit"></center>
+                {% csrf_token%}
+            </form>
+            
+        </div>
+        <center>
+            <div style="width: 30%;">
+                <input type=submit value="Back" onClick="javascript:history.go(-1);">
+            </div>
+        </center>
+        
+    
+</body>
+</html>
+{% endblock %}

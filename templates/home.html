@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<html>
+
+<head>
+</head>
+
+<body class="news">
+    <header>
+        <div class="nav">
+            <ul>
+                <li><a class="active" href="#">Home</a></li>
+                {% if 'present' in session_info %}
+                <li><a href="login">{{customer.fname}}</a></li>
+                <li><a href="logout">Logout</a></li>
+                {% elif 'no' in session_info %}
+                {% if 'no' in admin_session_info %}
+                <li><a href="login">Login</a></li>
+                <li><a href="register">Register</a></li>
+                {% endif %}
+                <li><a href="admin">Admin</a></li>
+                {% if 'present' in admin_session_info %}
+                <li><a href="admin_logout">Logout</a></li>
+                {% endif %}
+                
+                {% endif%}
+                <li><a href="branches">Branches</a></li>
+                <li><a href="about">About</a></li>
+                
+                
+            </ul>
+        </div>
+    </header>
+    <br>
+    <center>
+        <img src="{% static 'BankApp/images/bank_image.jpg' %}" alt="No image" height="500" width="1200">
+    </center>
+</body>
+
+</html>
+{% endblock %}

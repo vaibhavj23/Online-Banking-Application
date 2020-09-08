@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+
+<head>
+</head>
+
+<body class="news">
+<hr>
+
+<center>
+<div>
+    <h3 style="color: red;">{{message}}</h3>
+</div>
+</center>
+{% if 'saving' in display %}
+<center>
+<div class="formdiv">
+    
+        <form action="add_account" method="POST">
+
+            {% csrf_token%}
+            <label for="fname">User ID</label><br>
+            <input type="text" value="{{customer_id}}" disabled>
+            <label for="fname">Select Account to create</label><br>
+            <select id="account_type" name="account_type" required>
+                <option value="saving">Saving</option>
+            </select><br>
+            <label for="fname">Enter the Initial Amount</label>
+            <input type="number" name="balance" min="1000" required> <br>
+            <center><input type="submit" value="Create"></center>
+        </form>
+
+
+</div>
+</center>
+{% elif 'fixed' in display %}
+<center>
+<div class="formdiv">
+        <form action="add_account" method="POST">
+
+            {% csrf_token%}
+            <label for="fname">User ID</label><br>
+            <input type="text" value="{{customer_id}}" disabled>
+            <label for="fname">Select Account to create</label>
+            <select id="account_type" name="account_type" required>
+                <option value="fixed">Fixed</option>
+            </select><br>
+            <label for="fname">Enter the Initial Amount</label>
+            <input type="number" name="balance" min="1000" required> <br>
+            <center><input type="submit" value="Create"></center>
+        </form>
+
+
+</div>
+</center>
+{% elif 'both' in display %}
+<center>
+    <div class="formdiv">
+
+        <form action="add_account" method="POST">
+
+            {% csrf_token%}
+            <label for="fname">User ID</label><br>
+            <input type="text" value="{{customer_id}}" disabled>
+            <label for="fname">Select Account to create</label><br>
+            <select id="account_type" name="account_type" required>
+                <option value="saving">Saving</option>
+                <option value="fixed">Fixed</option>
+            </select><br>
+            <label for="fname">Enter the Initial Amount for Account</label>
+            <input type="number" name="balance" min="1000" required> <br>
+            <center><input type="submit" value="Create"></center>
+        </form>
+
+
+    </div>
+</center>
+{% endif%}
+<br><br>
+<center>
+    <div style="width: 30%;">
+        <input type=submit value="Back" onClick="javascript:history.go(-1);">
+    </div>
+</center>
+<center>
+<div>
+    <h3 style="color: rgb(31, 192, 31);">{{disp_msg}}</h3>
+</div>
+</center>
+</body>
+</html>
+
+{% endblock %}

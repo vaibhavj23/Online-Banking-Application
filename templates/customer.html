@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+
+<head>
+    <style>
+        h3 a {
+            padding: 5px;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            transition: .3s background-color;
+        }
+
+        h3 a:hover {
+            background-color: #36d317;
+        }
+
+    </style>
+</head>
+
+<body class="news">
+    <header>
+        <div class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a class="active" href="#">{{customer.fname}}</a></li>
+                <li><a href="logout">Logout</a></li>
+                <li><a href="branches">Branches</a></li>
+                <li><a href="about">About</a></li>
+            </ul>
+        </div>
+    </header>
+    <center><h2 style="color:brown;">Welcome {{customer.fname}}&nbsp;{{customer.lname}}</h2></center>
+    <hr>
+    <br>
+    <br>
+    <center>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+              <h3><a href="add_account">Add Account</a></h3>
+              <p>Make a fixed or saving account, if not present.</p>
+            </div>
+          </div>
+
+        <div class="column">
+          <div class="card">
+            <h3><a href="transaction">Make Transaction</a></h3>
+            <p>You can credit or debit money from your account here.</p>
+          </div>
+        </div>
+      
+        
+        <div class="column">
+          <div class="card">
+            <h3><a href="acc_details">View Details</a></h3>
+            <p>You can view your accounts detail here.</p>
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="card">
+            <h3><a href="contact_admin">Contact</a></h3>
+            <p>You can contact the bank for any query related to bank account here.</p>
+          </div>
+        </div>
+      </div>
+    </center>
+      
+      
+
+
+</body>
+
+</html>
+
+{% endblock %}

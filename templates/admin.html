@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static%}
+<html>
+
+<head>
+    <style>
+        .button{
+            width: 40%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="news">
+    <header>
+        <div class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% if 'present' in session_info %}
+                <li><a href="login">{{customer.fname}}</a></li>
+                <li><a href="logout">Logout</a></li>
+                {% elif 'no' in session_info %}
+                <li><a href="login">Login</a></li>
+                <li><a href="register">Register</a></li>
+                {% endif %}
+                <li><a class="active" href="#">Admin</a></li>
+                <li><a href="branches">Branches</a></li>
+                <li><a href="about">About</a></li>
+                
+
+            </ul>
+        </div>
+    </header><br><br>
+    <center>
+        <div class="formdiv">
+            <form action="admin_login" method="POST">
+    
+                {% csrf_token%}
+    
+                <label for="fname">Admin Email Id</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email id.." required>
+    
+                <label for="lname">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password.." required>
+    
+                <center><input type="submit" value="Login"></center>
+            </form>
+        </center>
+        {% for message in messages %}
+            <center><h3 style="color: red;">{{message}}</h3></center>
+        {% endfor %}
+</body>
+
+</html>
+{% endblock %}
